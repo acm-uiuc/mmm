@@ -1,0 +1,15 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+.webpack
+.dynamodb
+.DS_Store
+bin/
+bin
+bin/serverless bin/sls bin/slss
+
+# secrets
+**/secrets.json
