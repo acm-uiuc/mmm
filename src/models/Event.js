@@ -1,20 +1,12 @@
 import mongoose from 'mongoose';
 import {ObjectId} from 'mongoose/Schema/Types';
 import Topic from 'models/Topic.js';
+import Org from 'models/Org.js';
 
 const EventSchema = new mongoose.Schema({
   org: {
     required: true,
-    name: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      enum: ['sig', 'committee', 'company', 'other'],
-      default: 'sig',
-      required: true
-    }
+    ref: Org
   },
   creator: {
     type: String,

@@ -1,7 +1,16 @@
 import mongoose from 'mongoose';
 
 const TopicSchema = new mongoose.Schema({
-  topic: String
+  topic: {
+    type: String,
+    index: true,
+    unique: true
+  },
+  type: {
+    type: String,
+    index: true,
+    enum: ['language', 'domain', 'other']
+  }
 });
 
 /** Changes the password of the (local copy of) user model.
