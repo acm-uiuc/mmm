@@ -9,7 +9,7 @@ const OrgSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['sig', 'committee', 'company', 'other'],
+    enum: ['general', 'sig', 'committee', 'company', 'other'],
     default: 'sig',
     index: true,
     required: true

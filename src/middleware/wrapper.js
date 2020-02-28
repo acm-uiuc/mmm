@@ -3,13 +3,13 @@ import cors from '@middy/http-cors';
 import httpErrorHandler from '@middy/http-error-handler';
 import jsonBodyParser from '@middy/http-json-body-parser';
 import doNotWaitForEmptyEventLoop from '@middy/do-not-wait-for-empty-event-loop';
+import validator from '@middy/validator';
 
 import jsonBodyEncoder from 'middleware/custom/json-body-encoder';
-import validator from 'middleware/custom/validator';
 import validatorErrorHandler from 'middleware/custom/validator-error-handler';
 import errorHandler from 'middleware/custom/error-handler';
-import httpHeaderAuthorizer from 'middleware/custom/http-header-authorizer';
-import mongooseConnector from 'middleware/custom/mongoose-connector';
+// import httpHeaderAuthorizer from 'middleware/custom/http-header-authorizer';
+// import mongooseConnector from 'middleware/custom/mongoose-connector';
 
 /** Wraps a Serverless api function handler with middleware from
  * the Middy framework.
@@ -22,7 +22,7 @@ import mongooseConnector from 'middleware/custom/mongoose-connector';
  */
 export default (handler, inputSchema = null, authorized = false) => {
   const middleware = middy(handler)
-    .use(mongooseConnector({ databaseURI: process.env.IS_OFFLINE ? "mongodb://127.0.0.1:27017": process.env.MONGODB_URI }))
+    // .use(mongooseConnector({ databaseURI: process.env.IS_OFFLINE ? "mongodb://127.0.0.1:27017": process.env.MONGODB_URI }))
     .use(jsonBodyParser())
     .use(jsonBodyEncoder()) // Stringifies the response body
     .use(cors())
@@ -32,9 +32,9 @@ export default (handler, inputSchema = null, authorized = false) => {
     middleware.use(validator({ inputSchema }));
   }
 
-  if (authorized) {
-    middleware.use(httpHeaderAuthorizer());
-  }
+  // if (authorized) {
+  //   middleware.use(httpHeaderAuthorizer());
+  // }
 
   middleware
     .use(validatorErrorHandler())

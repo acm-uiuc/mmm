@@ -27,10 +27,8 @@
     "@middy/http-cors": "^1.0.0-alpha.63",
     "@middy/http-error-handler": "^1.0.0-alpha.63",
     "@middy/http-json-body-parser": "^1.0.0-alpha.63",
+    "@middy/validator": "^1.0.0-beta.6",
     "@types/aws-lambda": "^8.10.39",
-    "ajv": "^6.10.2",
-    "ajv-i18n": "^3.5.0",
-    "ajv-keywords": "^3.4.1",
     "http-errors": "^1.7.3",
     "mongoose": "^5.8.3",
     "source-map-support": "^0.5.16"

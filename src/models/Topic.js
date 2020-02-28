@@ -9,7 +9,7 @@ const TopicSchema = new mongoose.Schema({
   type: {
     type: String,
     index: true,
-    enum: ['language', 'domain', 'other']
+    enum: ['language', 'domain', 'social', 'other']
   }
 });
 
@@ -17,8 +17,8 @@ const TopicSchema = new mongoose.Schema({
  *
  * @param {String} password The plain text password.
  */
-EventSchema.methods.sample1 = async function() {};
+TopicSchema.methods.sample1 = async function() {};
 
-EventSchema.statics.sample2 = async function() {};
+TopicSchema.statics.sample2 = async function() {};
 
 export default mongoose.models.Topic || mongoose.model('Topic', TopicSchema);
