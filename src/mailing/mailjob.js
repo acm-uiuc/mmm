@@ -17,7 +17,8 @@ const emailTransport = nodemailer.createTransport({
 const ejs = require('ejs');
 const fs = require('fs');
 const path = require('path');
-const template = ejs.compile(fs.readFileSync(path.resolve('./src/templates/email.ejs.html'), 'utf8'), {});
+const htmlTemplate = ejs.compile(fs.readFileSync(path.resolve('./src/templates/email.ejs.html'), 'utf8'), {});
+const textTemplate = ejs.compile(fs.readFileSync(path.resolve('./src/templates/email.ejs.txt'), 'utf8'), {});
 
 /**
  * Entry point for the periodic emailing job.
@@ -75,7 +76,7 @@ function sendEmail(address, events) {
         from: 'Member-Meeting Matcher <' + senderAddress + '>',
         to: address,
         subject: 'ACM meetings you may be interested in',
-        text: 'Test!', // TODO!
-        html: template({events: events})
+        text: textTemplate({events: events}),
+        html: htmlTemplate({events: events})
     });
 }
