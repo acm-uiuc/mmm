@@ -1,14 +1,14 @@
 export default {
   type: 'object',
-  required: ['headers', 'pathParameters'],
+  required: ['queryStringParameters'],
   properties: {
     queryStringParameters: {
       type: 'object',
-      required: ['event'],
+      required: ['whereEvent'],
       additionalProperties: false,
       properties: {
         whereEvent: {
-          type: object // TODO[Bailey]: restrict where clause params
+          type: 'object' // TODO[Bailey]: restrict where clause params
         },
         limit: {
           type: 'number',
