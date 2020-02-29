@@ -2,8 +2,6 @@ import mongoose from 'mongoose';
 
 const OrgSchema = new mongoose.Schema({
   _id: {
-    unique: true,
-    index: true,
     type: String,
     trim: true,
     lowercase: true,

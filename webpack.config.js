@@ -43,7 +43,8 @@ module.exports = {
       routes: path.resolve(__dirname, 'src/routes/'),
       callbacks: path.resolve(__dirname, 'src/callbacks/'),
       models: path.resolve(__dirname, 'src/models/'),
-      utils: path.resolve(__dirname, 'src/utils/')
+      utils: path.resolve(__dirname, 'src/utils/'),
+      tests: path.resolve(__dirname, 'tests/')
     }
   }
 };
