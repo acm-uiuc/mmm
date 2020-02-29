@@ -4,9 +4,13 @@ import Org from 'models/Org.js';
 
 const EventSchema = new mongoose.Schema({
   org: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: Org
+  },
+  description: {
+    type: String,
+    default: ''
   },
   creator: {
     type: String,
@@ -29,5 +33,17 @@ const EventSchema = new mongoose.Schema({
     ref: Topic
   }
 });
+
+/** Filters out server metadata from the event object.*/
+EventSchema.methods.getReturnableEvent = async function() {
+  return {
+    name: this.name,
+    org: this.org,
+    description: this.description,
+    creator: this.creator,
+    eventDate: this.eventDate,
+    topics: this.topics // TODO[Bailey]: aggregate these
+  }
+};
 
 export default mongoose.models.Event || mongoose.model('Event', EventSchema);
