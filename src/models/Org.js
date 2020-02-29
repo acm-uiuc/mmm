@@ -1,12 +1,16 @@
 import mongoose from 'mongoose';
 
 const OrgSchema = new mongoose.Schema({
-  name: {
+  shortName: {
     unique: true,
     index: true,
     type: String,
     trim: true,
     lowercase: true,
+    required: true
+  },
+  name: {
+    type: String,
     required: true
   },
   kind: {
@@ -22,8 +26,9 @@ const OrgSchema = new mongoose.Schema({
  *
  * @return {Object} Org
  */
-OrgSchema.methods.getReturnableEvent = function() {
+OrgSchema.methods.getReturnableOrg = function() {
   return {
+    shortName: this.shortName,
     name: this.name,
     kind: this.kind
   };
