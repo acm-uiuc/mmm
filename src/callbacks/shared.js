@@ -11,3 +11,10 @@ export const successCB = () => ({
     message: 'Success'
   }
 });
+
+export const userDoesNotExistCB = (username) => ({
+  statusCode: 404,
+  body: {
+    message: `User ${username} does not exist`
+  }
+});
