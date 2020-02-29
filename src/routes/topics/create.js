@@ -6,8 +6,15 @@ import Topic from 'models/Topic';
 
 import { internalServerErrorCB } from 'callbacks/shared';
 
-const handler = async (event) => {
-  return internalServerErrorCB();
+const handler = async ({topic, kind}) => {
+  try {
+    const topic = new Topic({topic, kind});
+    savedTopic = await topic.save();
+    return topicCreatedCB(savedTopic.getReturnableTopic());
+  } catch(error) {
+    console.error(error);
+    return internalServerErrorCB();
+  }
 };
 
 // Wrap our handler with middleware
