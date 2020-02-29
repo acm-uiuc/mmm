@@ -23,7 +23,7 @@ EventSchema.methods.getReturnableEvent = async function() {
   return {
     name: this.name,
     kind: this.kind
-  }
+  };
 };
 
 export default mongoose.models.Org || mongoose.model('Org', OrgSchema);

@@ -43,7 +43,7 @@ EventSchema.methods.getReturnableEvent = async function() {
     creator: this.creator,
     eventDate: this.eventDate,
     topics: this.topics // TODO[Bailey]: aggregate these
-  }
+  };
 };
 
 export default mongoose.models.Event || mongoose.model('Event', EventSchema);

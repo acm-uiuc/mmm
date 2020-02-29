@@ -20,7 +20,7 @@ EventSchema.methods.getReturnableTopic = async function() {
   return {
     topic: this.topic,
     kind: this.kind
-  }
+  };
 };
 
 export default mongoose.models.Topic || mongoose.model('Topic', TopicSchema);

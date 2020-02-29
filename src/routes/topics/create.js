@@ -6,12 +6,12 @@ import Topic from 'models/Topic';
 
 import { internalServerErrorCB } from 'callbacks/shared';
 
-const handler = async ({topic, kind}) => {
+const handler = async ({ topic, kind }) => {
   try {
-    const topic = new Topic({topic, kind});
+    const topic = new Topic({ topic, kind });
     savedTopic = await topic.save();
     return topicCreatedCB(savedTopic.getReturnableTopic());
-  } catch(error) {
+  } catch (error) {
     console.error(error);
     return internalServerErrorCB();
   }

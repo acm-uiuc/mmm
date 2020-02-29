@@ -7,12 +7,12 @@ import Event from 'models/Event';
 import { getEventsCB } from 'callbacks/events/get-cb';
 import { internalServerErrorCB } from 'callbacks/shared';
 
-const handler = async ({queryStringParameters: {whereEvent, limit}}) => {
+const handler = async ({ queryStringParameters: { whereEvent, limit } }) => {
   try {
     const events = await Promise.all(
-      (
-        await Event.find(whereEvent).limit(limit)
-      ).map((event) => event.getReturnableEvent())
+      (await Event.find(whereEvent).limit(limit)).map((event) =>
+        event.getReturnableEvent()
+      )
     );
 
     return getEventsCB(events);

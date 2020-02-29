@@ -9,26 +9,26 @@ import Topic from 'models/Topic';
 
 import { internalServerErrorCB } from 'callbacks/shared';
 
-const handler = async ({event}) => {
+const handler = async ({ event }) => {
   // TODO[Bailey]: Authenticate in middleware
   let creator;
   try {
     creator = await Member.findById(event.creator); // Does it throw an error if not found??
-  } catch(error) {
+  } catch (error) {
     return internalServerErrorCB();
   }
 
   let org;
   try {
-    org = await Org.findOne({name: event.org.name}); // Does it throw an error if not found??
-  } catch(error) {
+    org = await Org.findOne({ name: event.org.name }); // Does it throw an error if not found??
+  } catch (error) {
     return internalServerErrorCB();
   }
 
   let topics;
   try {
-    topics = await Topic.find({name: event.topics});
-  } catch(error) {
+    topics = await Topic.find({ name: event.topics });
+  } catch (error) {
     return internalServerErrorCB();
   }
 
@@ -37,7 +37,7 @@ const handler = async ({event}) => {
   }
 
   try {
-    const newEvent  = new Event({
+    const newEvent = new Event({
       name: event.name,
       date: event.date,
       creator: creator._id,
@@ -47,7 +47,7 @@ const handler = async ({event}) => {
 
     const savedEvent = await newEvent.save();
     return eventCreatedCB(savedEvent.getReturnableEvent());
-  } catch(error) {
+  } catch (error) {
     return internalServerErrorCB();
   }
 };

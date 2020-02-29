@@ -7,12 +7,12 @@ import Topic from 'models/Topic';
 import { getTopicsCB } from 'callbacks/topics/get-cb';
 import { internalServerErrorCB } from 'callbacks/shared';
 
-const handler = async ({queryStringParameters: {whereTopic, limit}}) => {
+const handler = async ({ queryStringParameters: { whereTopic, limit } }) => {
   try {
     const topics = await Promise.all(
-      (
-        await Topic.find(whereTopic).limit(limit)
-      ).map((topic) => topic.getReturnableTopic())
+      (await Topic.find(whereTopic).limit(limit)).map((topic) =>
+        topic.getReturnableTopic()
+      )
     );
 
     return getTopicsCB(topics);
