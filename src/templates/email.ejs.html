@@ -54,6 +54,32 @@
       .column.of-4 {
         width: 25%;
       }
+      .eventsTable {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      tr.eventRow:nth-child(even) {
+        background-color: lightblue !important;
+      }
+      tr.eventRow:nth-child(odd) {
+        background-color: lightcyan !important;
+      }
+      .eventCell {
+        border: 1px solid lightslategray;
+        padding: 8px;
+      }
+      .eventName {
+        font-weight: bold;
+        font-size: 16px;
+      }
+      .eventOrg {
+        font-style: italic;
+        font-weight: lighter;
+      }
+      .eventDescription {
+        font-size: 11px;
+        margin-top: 8px;
+      }
       @media screen and (max-width:480px) {
         .preheader .rightColumnContent,
         .footer .rightColumnContent {
@@ -145,7 +171,7 @@
             height="100%"
             valign="top"
             bgcolor="">
-            <div style="text-align: center;"><strong><span style="color:#3E3E3E;"><span style="font-size:20px;">ACM meetings you might be interested in</span></span></strong></div>
+            <div style="text-align: center;"><strong><span style="color:#3E3E3E;"><span style="font-size:20px;">ACM meeting matches for you</span></span></strong></div>
         </td>
       </tr>
     </table>
@@ -156,17 +182,32 @@
             height="100%"
             valign="top"
             bgcolor="">
-            Hi there! Here are some events going on around ACM in the next week that we think might interest you.
+            Hi there! Here are some events going on around ACM in the next week that we think might interest you.<br><br>
 
-            <ul>
+            <table class="eventsTable"><tbody>
               <% events.forEach(function(event) { %>
-                <li><%= event.name %></li>
+                <tr class="eventRow"><td class="eventCell">
+                  <div class="eventMain">
+                    <span class="eventName"><%= event.name %></span><br>
+                    <%= event.eventDate.startTime.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago'}) %>
+                    with <span class="eventOrg"><%= event.org.name %></span>
+                  </div>
+                  <% if (event.description && event.description.trim() != '') { %>
+                    <div class="eventDescription"><%= event.description %></div>
+                  <% } %>
+                </td></tr>
               <% }); %>
-            </ul>
+            </tbody></table>
+
+            <br>
+            See you around!<br>
+            <br>
+            Best,<br>
+            ACM Member-Meeting Matcher
         </td>
       </tr>
     </table>
-  <table border="0" cellPadding="0" cellSpacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed" width="100%"><tbody><tr><td align="center" class="outer-td" style="padding:0px 0px 45px 0px"></td></tr></tbody></table>
+    <table border="0" cellPadding="0" cellSpacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed" width="100%"><tbody><tr><td align="center" class="outer-td" style="padding:0px 0px 45px 0px"></td></tr></tbody></table>
     <table class="module"
            role="module"
            data-type="divider"

@@ -29,7 +29,8 @@ export async function sendEmailBlast() {
     nextWeek.setDate(now.getDate() + 7);
     const upcomingEvents = await Event.find({'eventDate.startTime': {$gte: now, $lt: nextWeek}})
         .sort({'eventDate.startTime': -1})
-        .populate('topics');
+        .populate([{path: 'topics'}, {path: 'org'}]);
+    const promises = [];
     for (const member of members) {
         const interestingEvents = [];
         for (const event of upcomingEvents) {
@@ -40,9 +41,11 @@ export async function sendEmailBlast() {
         if (interestingEvents.length === 0) {
             continue;
         }
-        await sendEmail(member.email, interestingEvents);
+        promises.push(sendEmail(member.email, interestingEvents));
         console.log(member.email);
     }
+    await Promise.all(promises);
+    console.log('Messages sent');
 }
 
 /**
@@ -53,9 +56,10 @@ export async function sendEmailBlast() {
  */
 function isInteresting(member, event) {
     // TODO!
-    console.log(event.name);
+    console.log(event.name + ' - ' + event.org.name);
+    // console.log(Math.floor((event.eventDate.endTime - event.eventDate.startTime) / 60000));
     for (const topic of event.topics) {
-        console.log('  ' + topic.topic);
+        console.log('  Topic: ' + topic.topic);
     }
     return true;
 }
@@ -63,10 +67,11 @@ function isInteresting(member, event) {
 /**
  * Sends an email informing the specified member of the specified events.
  * @param {String} address the member's email address
- * @param {Array<Object>} events the interesting events (from Mongo)
+ * @param {Array<Event>} events the interesting events (from Mongo)
+ * @return {Promise<SentMessageInfo>} a promise to send the message
  */
-async function sendEmail(address, events) {
-    await emailTransport.sendMail({
+function sendEmail(address, events) {
+    return emailTransport.sendMail({
         from: 'Member-Meeting Matcher <' + senderAddress + '>',
         to: address,
         subject: 'ACM meetings you may be interested in',

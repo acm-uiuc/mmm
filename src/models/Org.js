@@ -1,12 +1,6 @@
 import mongoose from 'mongoose';
 
 const OrgSchema = new mongoose.Schema({
-  _id: { // name
-    type: String,
-    trim: true,
-    lowercase: true,
-    required: true
-  },
   name: {
     type: String,
     required: true
