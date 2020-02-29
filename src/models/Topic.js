@@ -20,8 +20,6 @@ const TopicSchema = new mongoose.Schema({
  * @return {Object} Topic
  */
 TopicSchema.methods.getReturnableTopic = function() {
-  console.log(this);
-  console.log(this.name);
   return {
     name: this.name,
     kind: this.kind
