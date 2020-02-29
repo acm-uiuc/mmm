@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 
 const OrgSchema = new mongoose.Schema({
-  _id: { // name
+  name: {
+    unique: true,
+    index: true,
     type: String,
     trim: true,
     lowercase: true,
@@ -15,5 +17,13 @@ const OrgSchema = new mongoose.Schema({
     required: true
   }
 });
+
+/** Filters out server metadata from the org object.*/
+EventSchema.methods.getReturnableEvent = async function() {
+  return {
+    name: this.name,
+    kind: this.kind
+  }
+};
 
 export default mongoose.models.Org || mongoose.model('Org', OrgSchema);
