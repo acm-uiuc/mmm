@@ -7,7 +7,7 @@ const OrgSchema = new mongoose.Schema({
     lowercase: true,
     required: true
   },
-  type: {
+  kind: {
     type: String,
     enum: ['general', 'sig', 'committee', 'company', 'other'],
     default: 'sig',
@@ -15,13 +15,5 @@ const OrgSchema = new mongoose.Schema({
     required: true
   }
 });
-
-/** Changes the password of the (local copy of) user model.
- *
- * @param {String} password The plain text password.
- */
-OrgSchema.methods.sample1 = async function() {};
-
-OrgSchema.statics.sample2 = async function() {};
 
 export default mongoose.models.Org || mongoose.model('Org', OrgSchema);

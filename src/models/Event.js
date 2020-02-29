@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
-import {ObjectId} from 'mongoose/Schema/Types';
 import Topic from 'models/Topic.js';
 import Org from 'models/Org.js';
 
 const EventSchema = new mongoose.Schema({
   org: {
+    type: [mongoose.Schema.Types.ObjectId],
     required: true,
     ref: Org
   },
@@ -16,18 +16,18 @@ const EventSchema = new mongoose.Schema({
     startTime: Date,
     endTime: Date
   },
+  name: {
+    required: true,
+    type: String
+  },
+  description: {
+    required: true,
+    type: String
+  },
   topics: {
-    type: [ObjectId],
+    type: [mongoose.Schema.Types.ObjectId],
     ref: Topic
   }
 });
-
-/** Changes the password of the (local copy of) user model.
- *
- * @param {String} password The plain text password.
- */
-EventSchema.methods.sample1 = async function() {};
-
-EventSchema.statics.sample2 = async function() {};
 
 export default mongoose.models.Event || mongoose.model('Event', EventSchema);
