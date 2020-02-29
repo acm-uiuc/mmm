@@ -85,13 +85,22 @@ functions:
           method: patch
           cors: true
 
-  delete-topics:
+  delete-topic:
     handler: src/routes/topics/delete.default
 
     events:
       - http:
           path: /topics/{id}
           method: delete
+          cors: true
+  
+  get-orgs:
+    handler: src/routes/orgs/get.default
+
+    events:
+      - http:
+          path: /orgs
+          method: get
           cors: true
 
 
