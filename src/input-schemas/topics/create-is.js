@@ -9,14 +9,14 @@ export default {
       properties: {
         topic: {
           type: 'object',
-          required: ['kind', 'topic'],
+          required: ['kind', 'name'],
           additionalProperties: false,
           properties: {
             kind: {
               type: 'string',
               enum: ['language', 'domain', 'social', 'other']
             },
-            topic: {
+            name: {
               type: 'string'
             }
           }

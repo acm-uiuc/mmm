@@ -1,4 +1,4 @@
-export const topicCreatedCb = (topic) => ({
+export const topicCreatedCB = (topic) => ({
   statusCode: 200,
   body: {
     message: 'Topic created',

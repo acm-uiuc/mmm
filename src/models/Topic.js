@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const TopicSchema = new mongoose.Schema({
-  topic: {
+  name: {
     type: String,
     index: true,
     unique: true,
@@ -15,10 +15,15 @@ const TopicSchema = new mongoose.Schema({
   }
 });
 
-/** Filters out server metadata from the topic object.*/
-TopicSchema.methods.getReturnableTopic = async function() {
+/** Filters out server metadata from the topic object.
+ * 
+ * @return {Object} Topic
+*/
+TopicSchema.methods.getReturnableTopic = function() {
+  console.log(this);
+  console.log(this.name);
   return {
-    topic: this.topic,
+    name: this.name,
     kind: this.kind
   };
 };

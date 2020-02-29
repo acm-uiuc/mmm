@@ -18,8 +18,11 @@ const OrgSchema = new mongoose.Schema({
   }
 });
 
-/** Filters out server metadata from the org object.*/
-OrgSchema.methods.getReturnableEvent = async function() {
+/** Filters out server metadata from the org object.
+ * 
+ * @return {Object} Org
+*/
+OrgSchema.methods.getReturnableEvent = function() {
   return {
     name: this.name,
     kind: this.kind
