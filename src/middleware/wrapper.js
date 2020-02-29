@@ -10,6 +10,7 @@ import validatorErrorHandler from 'middleware/custom/validator-error-handler';
 import errorHandler from 'middleware/custom/error-handler';
 // import httpHeaderAuthorizer from 'middleware/custom/http-header-authorizer';
 import mongooseConnector from 'middleware/custom/mongoose-connector';
+import jsonParametersParser from 'middleware/custom/json-parameters-parser';
 
 /** Wraps a Serverless api function handler with middleware from
  * the Middy framework.
@@ -24,6 +25,7 @@ export default (handler, inputSchema = null, authorized = false) => {
   const middleware = middy(handler)
     .use(mongooseConnector({ databaseURI: process.env.MONGODB_URI }))
     .use(jsonBodyParser())
+    .use(jsonParametersParser())
     .use(jsonBodyEncoder()) // Stringifies the response body
     .use(cors())
     .use(doNotWaitForEmptyEventLoop({ runOnBefore: true, runOnError: true }));

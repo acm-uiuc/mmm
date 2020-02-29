@@ -15,13 +15,10 @@ export default {
             org: {
               type: 'object',
               additionalProperties: false,
-              required: ['name', 'type'],
+              required: ['name'],
               properties: {
                 name: {
                   type: 'string'
-                },
-                type: {
-                  type: 'string' // TODO[Bailey]: make enum
                 }
               }
             },

@@ -8,6 +8,10 @@ const EventSchema = new mongoose.Schema({
     required: true,
     ref: Org
   },
+  description: {
+    type: String,
+    default: ''
+  },
   creator: {
     type: String,
     required: true,
@@ -30,5 +34,20 @@ const EventSchema = new mongoose.Schema({
     ref: Topic
   }]
 });
+
+/** Filters out server metadata from the Event object.
+ *
+ * @return {Object} Event
+ */
+EventSchema.methods.getReturnableEvent = function() {
+  return {
+    name: this.name,
+    org: this.org,
+    description: this.description,
+    creator: this.creator,
+    eventDate: this.eventDate,
+    topics: this.topics // TODO[Bailey]: aggregate these
+  };
+};
 
 export default mongoose.models.Event || mongoose.model('Event', EventSchema);

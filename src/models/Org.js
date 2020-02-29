@@ -14,4 +14,16 @@ const OrgSchema = new mongoose.Schema({
   }
 });
 
+/** Filters out server metadata from the org object.
+ *
+ * @return {Object} Org
+ */
+OrgSchema.methods.getReturnableOrg = function() {
+  return {
+    _id: this._id,
+    name: this.name,
+    kind: this.kind
+  };
+};
+
 export default mongoose.models.Org || mongoose.model('Org', OrgSchema);

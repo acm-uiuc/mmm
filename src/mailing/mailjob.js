@@ -60,7 +60,7 @@ function isInteresting(member, event) {
     console.log(event.name + ' - ' + event.org.name);
     // console.log(Math.floor((event.eventDate.endTime - event.eventDate.startTime) / 60000));
     for (const topic of event.topics) {
-        console.log('  Topic: ' + topic.topic);
+        console.log('  Topic: ' + topic.name);
     }
     return true;
 }

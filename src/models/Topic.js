@@ -1,16 +1,29 @@
 import mongoose from 'mongoose';
 
 const TopicSchema = new mongoose.Schema({
-  topic: {
+  name: {
     type: String,
     index: true,
-    unique: true
+    unique: true,
+    required: true
   },
-  type: {
+  kind: {
     type: String,
     index: true,
-    enum: ['language', 'domain', 'social', 'other']
+    enum: ['language', 'domain', 'social', 'other'],
+    required: true
   }
 });
+
+/** Filters out server metadata from the topic object.
+ *
+ * @return {Object} Topic
+ */
+TopicSchema.methods.getReturnableTopic = function() {
+  return {
+    name: this.name,
+    kind: this.kind
+  };
+};
 
 export default mongoose.models.Topic || mongoose.model('Topic', TopicSchema);
