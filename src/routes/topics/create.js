@@ -7,7 +7,7 @@ import Topic from 'models/Topic';
 import { topicCreatedCB } from 'callbacks/topics/create-cb';
 import { internalServerErrorCB } from 'callbacks/shared';
 
-const handler = async ({body: {topic}}) => {
+const handler = async ({ body: { topic } }) => {
   try {
     const newTopic = new Topic(topic);
     const savedTopic = await newTopic.save();

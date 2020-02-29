@@ -16,9 +16,9 @@ const TopicSchema = new mongoose.Schema({
 });
 
 /** Filters out server metadata from the topic object.
- * 
+ *
  * @return {Object} Topic
-*/
+ */
 TopicSchema.methods.getReturnableTopic = function() {
   console.log(this);
   console.log(this.name);

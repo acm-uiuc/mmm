@@ -35,9 +35,9 @@ const EventSchema = new mongoose.Schema({
 });
 
 /** Filters out server metadata from the Event object.
- * 
+ *
  * @return {Object} Event
-*/
+ */
 EventSchema.methods.getReturnableEvent = function() {
   return {
     name: this.name,
