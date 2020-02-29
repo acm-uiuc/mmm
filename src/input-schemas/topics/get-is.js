@@ -1,14 +1,12 @@
 export default {
   type: 'object',
-  required: ['queryStringParameters'],
   properties: {
     queryStringParameters: {
-      type: 'object',
-      required: ['whereTopic'],
+      type: ['object', 'null'],
       additionalProperties: false,
       properties: {
         whereTopic: {
-          type: 'object' // TODO[Bailey]: restrict where clause params
+          type: 'object'
         },
         limit: {
           type: 'number',
