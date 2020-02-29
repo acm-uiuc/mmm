@@ -13,12 +13,4 @@ const TopicSchema = new mongoose.Schema({
   }
 });
 
-/** Changes the password of the (local copy of) user model.
- *
- * @param {String} password The plain text password.
- */
-TopicSchema.methods.sample1 = async function() {};
-
-TopicSchema.statics.sample2 = async function() {};
-
 export default mongoose.models.Topic || mongoose.model('Topic', TopicSchema);

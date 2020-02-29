@@ -7,7 +7,11 @@ const OrgSchema = new mongoose.Schema({
     lowercase: true,
     required: true
   },
-  kind: {
+  name: {
+    type: String,
+    required: true
+  },
+  type: {
     type: String,
     enum: ['general', 'sig', 'committee', 'company', 'other'],
     default: 'sig',

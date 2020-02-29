@@ -4,13 +4,14 @@ import Org from 'models/Org.js';
 
 const EventSchema = new mongoose.Schema({
   org: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: Org
   },
   creator: {
     type: String,
-    required: true
+    required: true,
+    index: true
   },
   eventDate: {
     startTime: Date,
@@ -24,10 +25,10 @@ const EventSchema = new mongoose.Schema({
     required: true,
     type: String
   },
-  topics: {
-    type: [mongoose.Schema.Types.ObjectId],
+  topics: [{
+    type: mongoose.Schema.Types.ObjectId,
     ref: Topic
-  }
+  }]
 });
 
 export default mongoose.models.Event || mongoose.model('Event', EventSchema);
