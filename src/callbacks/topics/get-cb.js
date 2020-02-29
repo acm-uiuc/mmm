@@ -1,4 +1,4 @@
-export const topicCreatedCb = (topics) => ({
+export const getTopicsCB = (topics) => ({
   statusCode: 200,
   body: {
     message: `Fetched ${topics.length} topics`,

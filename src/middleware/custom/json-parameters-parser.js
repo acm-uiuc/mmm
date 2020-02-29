@@ -1,4 +1,4 @@
-module.exports = (opts) => ({
+export default (opts) => ({
   before: (handler, next) => {
     for (const [param, value] of Object.entries(
       handler.event.queryStringParameters
