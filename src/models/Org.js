@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const OrgSchema = new mongoose.Schema({
-  shortName: {
+  _id: {
     unique: true,
     index: true,
     type: String,
@@ -28,7 +28,7 @@ const OrgSchema = new mongoose.Schema({
  */
 OrgSchema.methods.getReturnableOrg = function() {
   return {
-    shortName: this.shortName,
+    _id: this._id,
     name: this.name,
     kind: this.kind
   };
