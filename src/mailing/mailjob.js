@@ -43,6 +43,7 @@ export async function sendEmailBlast() {
   })
     .sort({ 'eventDate.startTime': -1 })
     .populate([{ path: 'topics' }, { path: 'org' }]);
+  const notifiedUsers = [];
   const promises = [];
   for (const member of members) {
     const interestingEvents = [];
@@ -61,8 +62,13 @@ export async function sendEmailBlast() {
       .map((ie) => ie.event);
     bestEvents.sort((a, b) => a.eventDate.startTime - b.eventDate.startTime);
     promises.push(promiseEmail(member.email, bestEvents));
+    notifiedUsers.push({
+      email: member.email,
+      events: bestEvents.map((e) => e.name)
+    });
   }
   await Promise.all(promises);
+  return notifiedUsers;
 }
 
 /**

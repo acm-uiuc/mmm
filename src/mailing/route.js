@@ -1,12 +1,14 @@
 import middyfy from 'middleware/wrapper';
 
-import { successCB } from 'callbacks/shared';
 import { sendEmailBlast } from './mailjob';
 
 // Temporary - for testing
 const handler = async (event) => {
-  await sendEmailBlast();
-  return successCB();
+  const notifications = await sendEmailBlast();
+  return {
+    statusCode: 200,
+    body: notifications
+  };
 };
 
 export default middyfy(handler, {});
