@@ -119,6 +119,7 @@ functions:
 
   send-mailing:
     handler: src/mailing/route.default
+    timeout: 300
 
     events:
       - http:
