@@ -6,6 +6,9 @@ const fs = require('fs');
 const nodemailer = require('nodemailer');
 const path = require('path');
 
+const maximumEventsPerNotification = 5;
+const minimumRelevanceToNotify = 1.7;
+
 // Set up nodemailer for emailing
 const senderAddress = process.env['MAIL_USERNAME'];
 const emailTransport = nodemailer.createTransport({
@@ -44,34 +47,48 @@ export async function sendEmailBlast() {
   for (const member of members) {
     const interestingEvents = [];
     for (const event of upcomingEvents) {
-      if (isInteresting(member, event)) {
-        interestingEvents.push(event);
+      const interestScore = scoreInterest(member, event);
+      if (interestScore >= minimumRelevanceToNotify) {
+        interestingEvents.push({ event: event, score: interestScore });
       }
     }
     if (interestingEvents.length === 0) {
       continue;
     }
-    promises.push(sendEmail(member.email, interestingEvents));
-    console.log(member.email);
+    interestingEvents.sort((a, b) => b.score - a.score);
+    const bestEvents = interestingEvents
+      .slice(0, maximumEventsPerNotification)
+      .map((ie) => ie.event);
+    bestEvents.sort((a, b) => a.eventDate.startTime - b.eventDate.startTime);
+    promises.push(promiseEmail(member.email, bestEvents));
   }
   await Promise.all(promises);
-  console.log('Messages sent');
 }
 
 /**
- * Determines whether the specified member is likely interested in the specified event.
+ * Determines how interested the specified member likely is in the specified event.
  * @param {Member} member the member (from Mongo)
  * @param {Event} event the event (from Mongo)
- * @return {Boolean} whether to suggest the event for the member
+ * @return {Number} an interest score (larger scores more likely)
  */
-function isInteresting(member, event) {
-  // TODO!
-  console.log(event.name + ' - ' + event.org.name);
-  // console.log(Math.floor((event.eventDate.endTime - event.eventDate.startTime) / 60000));
-  for (const topic of event.topics) {
-    console.log('  Topic: ' + topic.name);
+function scoreInterest(member, event) {
+  if (event.topics.length === 0) {
+    return 0.0;
   }
-  return true;
+  const memberInterests = new Map();
+  member.interests.forEach((i) => (memberInterests[i.name] = i.weight));
+  let matches = 0.0;
+  let maxRelevance = 0.0;
+  for (const topic of event.topics) {
+    const relevanceToMember = memberInterests[topic.name] || 0;
+    matches += relevanceToMember;
+    maxRelevance = Math.max(maxRelevance, relevanceToMember);
+  }
+  return (
+    matches / Math.sqrt(event.topics.length) +
+    1 / (1.3 - matches / event.topics.length) +
+    maxRelevance
+  );
 }
 
 /**
@@ -80,7 +97,7 @@ function isInteresting(member, event) {
  * @param {Array<Event>} events the interesting events (from Mongo)
  * @return {Promise<SentMessageInfo>} a promise to send the message
  */
-function sendEmail(address, events) {
+function promiseEmail(address, events) {
   return emailTransport.sendMail({
     from: 'Member-Meeting Matcher <' + senderAddress + '>',
     to: address,
