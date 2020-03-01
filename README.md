@@ -10,7 +10,7 @@ goal.
 
 ## API
 
-***API basename***: `https://89gebvx4j9.execute-api.us-east-1.amazonaws.com/dev`
+***API basename***: `https://4z5904nohk.execute-api.us-east-1.amazonaws.com/dev`
 
 ### /events
 
@@ -80,7 +80,7 @@ Example
 }
 ```
 
-#### PATCH 
+#### PATCH /{_id}
 
 Schema
 ```json
@@ -118,6 +118,11 @@ Schema
         "type": "array"
       }
     }
+  },
+  "pathParameters": {
+    "_id": {
+      "type": "string"
+    }
   }
 }
 ```
@@ -128,6 +133,22 @@ Example
   "body": {
     "event": {
       "name": "Awesomer Hack IL Project Meeting"
+    }
+  },
+  "pathParameters": {
+    "_id": "123456789"
+  }
+}
+```
+
+#### DELETE /{_id}
+
+Schema
+```json
+{
+  "pathParameters": {
+    "_id": {
+      "type": "string"
     }
   }
 }
