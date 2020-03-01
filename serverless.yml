@@ -59,7 +59,7 @@ functions:
 
     events:
       - http:
-          path: /events/{id}
+          path: /events/{_id}
           method: delete
           cors: true
 

@@ -13,3 +13,18 @@ export const eventUpdatedCB = (event) => ({
     event: event
   }
 });
+
+export const eventDeletedCB = (event) => ({
+  statusCode: 200,
+  body: {
+    message: 'Event deleted',
+    event: event
+  }
+});
+
+export const eventDoesNotExistCB = (_id) => ({
+  statusCode: 404,
+  body: {
+    message: `Event ${_id} does not exist`
+  }
+});
