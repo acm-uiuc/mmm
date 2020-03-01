@@ -4,7 +4,7 @@ import Org from 'models/Org.js';
 
 const EventSchema = new mongoose.Schema({
   org: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
     ref: Org
   },
