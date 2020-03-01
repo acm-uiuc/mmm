@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/acm-uiuc/mmm"
   },
   "author": "Bailey Tincher",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/acm-uiuc/mmm/issues"
   },
   "homepage": "acm.illinois.edu",
   "dependencies": {
