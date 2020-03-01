@@ -1,4 +1,6 @@
-import User from 'models/User';
+import Member from 'models/Member';
+
+const createError = require('http-errors');
 
 /** Parses authentication info from the request before reaching the handler.
  *
@@ -13,29 +15,26 @@ import User from 'models/User';
 export default () => ({
   before: async (handler) => {
     handler.event.authorizedUser = null;
-    const Authorization = handler.event.headers.Authorization; // Safety in validation
-    let queriedUser;
-    try {
-      queriedUser = JSON.parse(handler.event.queryStringParameters.user);
-    } catch (err) {
-      return;
-    }
-
-    if (Authorization.startsWith('Bearer')) {
+    // TODO: Actual authentication
+    const netId = handler.event.headers.NetID;
+    if (netId) {
       try {
-        const foundUser = await User.findUser(
-          queriedUser.username,
-          queriedUser.email
+        const email = netId + '@illinois.edu';
+        const member = await Member.findOneAndUpdate(
+          { email: email },
+          { email: email },
+          { new: true, upsert: true, setDefaultsOnInsert: true }
         );
-        if (
-          foundUser &&
-          (await foundUser.verifyToken(Authorization.slice(7)))
-        ) {
-          handler.event.authorizedUser = foundUser;
-        }
+        handler.event.authorizedUser = member;
       } catch (err) {
         console.error(err);
+        throw createError(
+          500,
+          'Internal error occurred while trying to authenticate you'
+        );
       }
-    } // TODO: standardize all auth info to be in the header aside from register
+    } else {
+      throw createError(401);
+    }
   }
 });

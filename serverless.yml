@@ -108,6 +108,24 @@ functions:
           method: get
           cors: true
 
+  authorize-user:
+    handler: src/routes/authorization/authorize.default
+
+    events:
+      - http:
+          path: /orgs/authorize
+          method: post
+          cors: true
+
+  revoke-user:
+    handler: src/routes/authorization/revoke.default
+
+    events:
+      - http:
+          path: /orgs/revoke
+          method: post
+          cors: true
+
   service-update-member:
     handler: src/routes/topics-service/updatemember.default
 
