@@ -18,8 +18,8 @@ const EventSchema = new mongoose.Schema({
     index: true
   },
   eventDate: {
-    startTime: { type: Date },
-    endTime: { type: Date }
+    startTime: { type: Date, required: true },
+    endTime: { type: Date, required: true }
   },
   name: {
     required: true,
@@ -45,6 +45,7 @@ EventSchema.methods.getReturnableEvent = async function() {
     .populate('topics')
     .execPopulate();
   return {
+    _id: event._id,
     name: event.name,
     org: event.org.getReturnableOrg(),
     description: event.description,

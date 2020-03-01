@@ -24,3 +24,11 @@ export const createEvent = async (event) => {
     event: event
   });
 };
+
+export const updateEvent = async (event) => {
+  return instance.patch(EVENTS_BASENAME, {
+    event: event
+  });
+};
+
+// TODO[Bailey]: Add tests for getEvents()

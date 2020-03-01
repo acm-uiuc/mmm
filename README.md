@@ -32,8 +32,9 @@ Schema
         "type": "string"
       },
       "org": {
-        "type": "string",
-        "required": true
+        "_id": {
+          "type": "string"
+        }
       },
       "creator": {
         "type": "string",
@@ -79,13 +80,66 @@ Example
 }
 ```
 
+#### PATCH 
+
+Schema
+```json
+{
+  "body": {
+    "event": {
+      "name": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "org": {
+        "_id": {
+          "type": "string"
+        }
+      },
+      "creator": {
+        "type": "string"
+      },
+      "eventDate": {
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "topics": {
+        "type": "array"
+      }
+    }
+  }
+}
+```
+
+Example
+```json
+{
+  "body": {
+    "event": {
+      "name": "Awesomer Hack IL Project Meeting"
+    }
+  }
+}
+```
+
 #### GET
 
 Schema
 ```json
 {
   "queryStringParameters": {
-    "whereTopic": {
+    "whereEvent": {
       "type": "object"
       // MongoDB where clause
     },

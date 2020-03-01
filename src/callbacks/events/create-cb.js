@@ -5,3 +5,11 @@ export const eventCreatedCB = (event) => ({
     event: event
   }
 });
+
+export const eventUpdatedCB = (event) => ({
+  statusCode: 200,
+  body: {
+    message: 'Event updated',
+    event: event
+  }
+});

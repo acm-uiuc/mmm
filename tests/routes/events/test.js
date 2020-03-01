@@ -1,4 +1,4 @@
-import { getTopics, createTopic, createEvent } from '../utils';
+import { getTopics, createTopic, createEvent, updateEvent } from '../utils';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -60,4 +60,33 @@ test('Create topics and event', async () => {
   resEvent.topics.sort();
   event.topics.sort();
   expect(createEventRes.data.event).toMatchObject(event);
+});
+
+test('Update an event', async () => {
+  const event = {
+    "org": {
+      "_id": "aida"
+    },
+    "name": `smoke-test-event-${uuidv4()}`.substr(0, 64),
+    "topics": topics,
+    "eventDate": {
+      "startTime": "2020-03-01T03:00:04.238Z",
+      "endTime": "2020-03-02T03:00:04.238Z"
+    },
+    "creator": "tincher2",
+    "description": "hello world",
+    "location": "siebel"
+  };
+
+  const createEventRes = await createEvent(event);
+  expect(createEventRes.status).toEqual(200);
+
+  const resEvent = createEventRes.data.event;
+  expect(resEvent).toMatchObject(event);
+
+  resEvent.creator = 'jeff';
+
+  const updateEventRes = await updateEvent(event);
+  expect(updateEventRes.status).toEqual(200);
+  expect(updateEventRes.data.event).toMatchObject(resEvent);
 });

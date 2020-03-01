@@ -50,7 +50,7 @@ functions:
 
     events:
       - http:
-          path: /events/{id}
+          path: /events/{_id}
           method: patch
           cors: true
 
