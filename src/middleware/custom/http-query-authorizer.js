@@ -16,10 +16,13 @@ export default () => ({
   before: async (handler) => {
     handler.event.authorizedUser = null;
     // TODO: Actual authentication
-    const netId = handler.event.headers.NetID;
-    if (netId) {
+    if (
+      handler.event.queryStringParameters &&
+      handler.event.queryStringParameters.netid
+    ) {
       try {
-        const email = netId + '@illinois.edu';
+        const email =
+          handler.event.queryStringParameters.netid + '@illinois.edu';
         const member = await Member.findOneAndUpdate(
           { email: email },
           { email: email },
