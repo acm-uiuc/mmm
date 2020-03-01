@@ -5,6 +5,13 @@ export const internalServerErrorCB = () => ({
   }
 });
 
+export const badRequestErrorCB = () => ({
+  statusCode: 400,
+  body: {
+    message: 'Bad request'
+  }
+});
+
 export const successCB = () => ({
   statusCode: 200,
   body: {

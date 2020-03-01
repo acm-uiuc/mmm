@@ -1,10 +1,8 @@
 import mongoose from 'mongoose';
 
 const TopicSchema = new mongoose.Schema({
-  name: {
+  _id: {
     type: String,
-    index: true,
-    unique: true,
     required: true
   },
   kind: {
@@ -21,7 +19,7 @@ const TopicSchema = new mongoose.Schema({
  */
 TopicSchema.methods.getReturnableTopic = function() {
   return {
-    name: this.name,
+    _id: this._id,
     kind: this.kind
   };
 };

@@ -18,20 +18,16 @@ const EventSchema = new mongoose.Schema({
     index: true
   },
   eventDate: {
-    startTime: Date,
-    endTime: Date
+    startTime: { type: Date },
+    endTime: { type: Date }
   },
   name: {
     required: true,
     type: String
   },
-  description: {
-    required: true,
-    type: String
-  },
   topics: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: Topic
     }
   ]
@@ -41,14 +37,17 @@ const EventSchema = new mongoose.Schema({
  *
  * @return {Object} Event
  */
-EventSchema.methods.getReturnableEvent = function() {
+EventSchema.methods.getReturnableEvent = async function() {
+  const event = await this.populate('org')
+    .populate('topics')
+    .execPopulate();
   return {
-    name: this.name,
-    org: this.org,
-    description: this.description,
-    creator: this.creator,
-    eventDate: this.eventDate,
-    topics: this.topics // TODO[Bailey]: aggregate these
+    name: event.name,
+    org: event.org.getReturnableOrg(),
+    description: event.description,
+    creator: event.creator,
+    eventDate: event.eventDate,
+    topics: event.topics.map((t) => t.getReturnableTopic())
   };
 };
 

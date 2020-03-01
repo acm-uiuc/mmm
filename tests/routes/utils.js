@@ -7,6 +7,7 @@ const instance = axios.create({
 
 const API_BASENAME = 'http://localhost:3000/dev';
 const TOPICS_BASENAME = API_BASENAME + '/topics';
+const EVENTS_BASENAME = API_BASENAME + '/events';
 
 export const createTopic = async (topic) => {
   return instance.post(TOPICS_BASENAME, {
@@ -16,4 +17,10 @@ export const createTopic = async (topic) => {
 
 export const getTopics = async (queryStringParameters={}) => {
   return instance.get(TOPICS_BASENAME, {params: queryStringParameters});
+};
+
+export const createEvent = async (event) => {
+  return instance.post(EVENTS_BASENAME, {
+    event: event
+  });
 };

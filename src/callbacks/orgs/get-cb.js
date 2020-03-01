@@ -5,3 +5,10 @@ export const getOrgsCB = (orgs) => ({
     orgs: orgs
   }
 });
+
+export const orgDoesNotExistCB = (org) => ({
+  statusCode: 400,
+  body: {
+    message: `org ${org} does not exist`
+  }
+});
