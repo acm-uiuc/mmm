@@ -68,7 +68,7 @@ test('Update an event', async () => {
       "_id": "aida"
     },
     "name": `smoke-test-event-${uuidv4()}`.substr(0, 64),
-    "topics": topics,
+    "topics": [],
     "eventDate": {
       "startTime": "2020-03-01T03:00:04.238Z",
       "endTime": "2020-03-02T03:00:04.238Z"
@@ -84,9 +84,8 @@ test('Update an event', async () => {
   const resEvent = createEventRes.data.event;
   expect(resEvent).toMatchObject(event);
 
-  resEvent.creator = 'jeff';
-
-  const updateEventRes = await updateEvent(event);
+  resEvent.creator = "bob"
+  const updateEventRes = await updateEvent(resEvent._id, {"creator": "bob"});
   expect(updateEventRes.status).toEqual(200);
   expect(updateEventRes.data.event).toMatchObject(resEvent);
 });

@@ -25,8 +25,8 @@ export const createEvent = async (event) => {
   });
 };
 
-export const updateEvent = async (event) => {
-  return instance.patch(EVENTS_BASENAME, {
+export const updateEvent = async (_id, event) => {
+  return instance.patch(EVENTS_BASENAME + `/${_id}`, {
     event: event
   });
 };
