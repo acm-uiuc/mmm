@@ -17,7 +17,6 @@ export default {
             },
             description: {
               type: 'string',
-              default: '',
               maxLength: 256
             },
             org: {
