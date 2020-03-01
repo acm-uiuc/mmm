@@ -81,23 +81,23 @@ functions:
           method: get
           cors: true
 
-  update-topic:
-    handler: src/routes/topics/update.default
+  # update-topic:
+  #   handler: src/routes/topics/update.default
 
-    events:
-      - http:
-          path: /topics/{id}
-          method: patch
-          cors: true
+  #   events:
+  #     - http:
+  #         path: /topics/{id}
+  #         method: patch
+  #         cors: true
 
-  delete-topic:
-    handler: src/routes/topics/delete.default
+  # delete-topic:
+  #   handler: src/routes/topics/delete.default
 
-    events:
-      - http:
-          path: /topics/{id}
-          method: delete
-          cors: true
+  #   events:
+  #     - http:
+  #         path: /topics/{id}
+  #         method: delete
+  #         cors: true
   
   get-orgs:
     handler: src/routes/orgs/get.default
@@ -129,7 +129,7 @@ functions:
 custom:
   stages:
     - dev
-    - v1.0
+    # - v1.0
 
   serverless-offline:
     prefix: ${self:provider.stage}
