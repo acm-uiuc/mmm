@@ -34,7 +34,7 @@ functions:
       - http:
           path: /events
           method: post
-          cors: true
+          cors: {origin: '*', headers: ['NetID']}
 
   get-events:
     handler: src/routes/events/get.default
@@ -43,7 +43,7 @@ functions:
       - http:
           path: /events
           method: get
-          cors: true
+          cors: {origin: '*', headers: ['NetID']}
 
   update-event:
     handler: src/routes/events/update.default
@@ -52,7 +52,7 @@ functions:
       - http:
           path: /events/{_id}
           method: patch
-          cors: true
+          cors: {origin: '*', headers: ['NetID']}
 
   delete-event:
     handler: src/routes/events/delete.default
@@ -61,7 +61,7 @@ functions:
       - http:
           path: /events/{_id}
           method: delete
-          cors: true
+          cors: {origin: '*', headers: ['NetID']}
 
   create-topic:
     handler: src/routes/topics/create.default
@@ -70,7 +70,7 @@ functions:
       - http:
           path: /topics
           method: post
-          cors: true
+          cors: {origin: '*', headers: ['NetID']}
 
   get-topics:
     handler: src/routes/topics/get.default
@@ -79,7 +79,7 @@ functions:
       - http:
           path: /topics
           method: get
-          cors: true
+          cors: {origin: '*', headers: ['NetID']}
 
   # update-topic:
   #   handler: src/routes/topics/update.default
@@ -106,7 +106,25 @@ functions:
       - http:
           path: /orgs
           method: get
-          cors: true
+          cors: {origin: '*', headers: ['NetID']}
+
+  authorize-user:
+    handler: src/routes/authorization/authorize.default
+
+    events:
+      - http:
+          path: /orgs/authorize
+          method: post
+          cors: {origin: '*', headers: ['NetID']}
+
+  revoke-user:
+    handler: src/routes/authorization/revoke.default
+
+    events:
+      - http:
+          path: /orgs/revoke
+          method: post
+          cors: {origin: '*', headers: ['NetID']}
 
   service-update-member:
     handler: src/routes/topics-service/updatemember.default

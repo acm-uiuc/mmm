@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import OrgManager from 'models/OrgManager';
 
 const OrgSchema = new mongoose.Schema({
   _id: {
@@ -30,6 +31,16 @@ OrgSchema.methods.getReturnableOrg = function() {
     name: this.name,
     kind: this.kind
   };
+};
+
+/**
+ * Determines whether the specified user is authorized to manipulate the org's events.
+ * @param {String} email the user's email address
+ * @return {Boolean} whether the user is authorized
+ */
+OrgSchema.methods.isUserAuthorized = async function(email) {
+  const size = await OrgManager.find({ email: email, org: this._id }).count();
+  return size > 0;
 };
 
 export default mongoose.models.Org || mongoose.model('Org', OrgSchema);

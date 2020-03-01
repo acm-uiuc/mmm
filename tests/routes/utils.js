@@ -12,6 +12,10 @@ const EVENTS_BASENAME = API_BASENAME + '/events';
 export const createTopic = async (topic) => {
   return instance.post(TOPICS_BASENAME, {
     topic: topic
+  }, {
+    headers: {
+      'NetID': 'admin'
+    }
   });
 };
 
@@ -22,12 +26,20 @@ export const getTopics = async (queryStringParameters={}) => {
 export const createEvent = async (event) => {
   return instance.post(EVENTS_BASENAME, {
     event: event
+  }, {
+    headers: {
+      'NetID': 'admin'
+    }
   });
 };
 
 export const updateEvent = async (_id, event) => {
   return instance.patch(EVENTS_BASENAME + `/${_id}`, {
     event: event
+  }, {
+    headers: {
+      'NetID': 'admin'
+    }
   });
 };
 
