@@ -1,10 +1,10 @@
-import Member from '../models/Member';
-import Event from '../models/Event';
+import Member from 'models/Member';
+import Event from 'models/Event';
 
-const ejs = require('ejs');
-const fs = require('fs');
-const nodemailer = require('nodemailer');
-const path = require('path');
+import ejs from 'ejs';
+import fs from 'fs';
+import nodemailer from 'nodemailer';
+import path from 'path';
 
 const maximumEventsPerNotification = 5;
 const minimumRelevanceToNotify = 1.7;
@@ -82,11 +82,11 @@ function scoreInterest(member, event) {
     return 0.0;
   }
   const memberInterests = new Map();
-  member.interests.forEach((i) => (memberInterests[i.name] = i.weight));
+  member.interests.forEach((i) => (memberInterests[i._id] = i.weight));
   let matches = 0.0;
   let maxRelevance = 0.0;
   for (const topic of event.topics) {
-    const relevanceToMember = memberInterests[topic.name] || 0;
+    const relevanceToMember = memberInterests[topic._id] || 0;
     matches += relevanceToMember;
     maxRelevance = Math.max(maxRelevance, relevanceToMember);
   }

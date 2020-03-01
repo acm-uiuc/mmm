@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import Topic from 'models/Topic';
+
 const MemberSchema = new mongoose.Schema({
   email: {
     required: true,
@@ -11,9 +13,10 @@ const MemberSchema = new mongoose.Schema({
     required: true,
     type: [
       {
-        name: {
+        _id: {
           required: true,
-          type: String
+          type: String,
+          ref: Topic
         },
         weight: {
           required: true,

@@ -14,10 +14,10 @@ export default {
           type: 'array',
           items: {
             type: 'object',
-            required: ['name', 'weight'],
+            required: ['_id', 'weight'],
             additionalProperties: false,
             properties: {
-              name: {
+              _id: {
                 type: 'string'
               },
               weight: {
