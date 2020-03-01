@@ -29,10 +29,12 @@ const EventSchema = new mongoose.Schema({
     required: true,
     type: String
   },
-  topics: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: Topic
-  }]
+  topics: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Topic
+    }
+  ]
 });
 
 /** Filters out server metadata from the Event object.
