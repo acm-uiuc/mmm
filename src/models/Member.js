@@ -24,7 +24,8 @@ const MemberSchema = new mongoose.Schema({
   },
   current: {
     required: true,
-    type: Boolean
+    type: Boolean,
+    default: false
   }
 });
 
