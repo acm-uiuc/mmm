@@ -29,7 +29,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.html$/i,
+        test: /(\.html$|\.txt$)/i,
         use: 'raw-loader',
       }
     ]
@@ -45,7 +45,8 @@ module.exports = {
       mailing: path.resolve(__dirname, 'src/mailing/'),
       models: path.resolve(__dirname, 'src/models/'),
       utils: path.resolve(__dirname, 'src/utils/'),
-      tests: path.resolve(__dirname, 'tests/')
+      tests: path.resolve(__dirname, 'tests/'),
+      templates: path.resolve(__dirname, 'src/templates')
     }
   }
 };

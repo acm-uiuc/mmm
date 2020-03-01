@@ -2,9 +2,10 @@ import Member from 'models/Member';
 import Event from 'models/Event';
 
 import ejs from 'ejs';
-import fs from 'fs';
 import nodemailer from 'nodemailer';
-import path from 'path';
+
+import htmlEmailTemplateRaw from 'templates/email.ejs.html';
+import textEmailTemplateRaw from 'templates/email.ejs.txt';
 
 const maximumEventsPerNotification = 5;
 const minimumRelevanceToNotify = 1.7;
@@ -21,14 +22,8 @@ const emailTransport = nodemailer.createTransport({
 });
 
 // Load the email templates
-const htmlTemplate = ejs.compile(
-  fs.readFileSync(path.resolve('./src/templates/email.ejs.html'), 'utf8'),
-  {}
-);
-const textTemplate = ejs.compile(
-  fs.readFileSync(path.resolve('./src/templates/email.ejs.txt'), 'utf8'),
-  {}
-);
+const htmlTemplate = ejs.compile(htmlEmailTemplateRaw, {});
+const textTemplate = ejs.compile(textEmailTemplateRaw, {});
 
 /**
  * Entry point for the periodic emailing job.

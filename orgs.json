@@ -1,0 +1,97 @@
+[{
+  "_id": "aida",
+  "name": "SIG for Artificial Intelligence and Data Analytics",
+  "kind": "sig"
+}, {
+  "_id": "quiuc",
+  "name": "Quantum Computing @ UIUC",
+  "kind": "sig"
+}, {
+  "_id": "nll",
+  "name": "SIG for Natural Language Learning",
+  "kind": "sig"
+}, {
+  "_id": "webmonkeys",
+  "name": "Web Monkeys",
+  "kind": "sig"
+}, {
+  "_id": "chi",
+  "name": "SIG for Computer-Human Interaction",
+  "kind": "sig"
+}, {
+  "_id": "mobile",
+  "name": "SIG for Mobile Development",
+  "kind": "sig"
+}, {
+  "_id": "music",
+  "name": "SIG for Tech in Music",
+  "kind": "sig"
+}, {
+  "_id": "glug",
+  "name": "GNU/Linux User Group",
+  "kind": "sig"
+}, {
+  "_id": "ops",
+  "name": "SIG for Operating Systems",
+  "kind": "sig"
+}, {
+  "_id": "pwny",
+  "name": "SIG for Cyber Security (PWNY)",
+  "kind": "sig"
+}, {
+  "_id": "blockchain",
+  "name": "SIG for Blockchain",
+  "kind": "sig"
+}, {
+  "_id": "bot",
+  "name": "SIG for Robotics",
+  "kind": "sig"
+}, {
+  "_id": "arch",
+  "name": "SIG for Computer Architecture",
+  "kind": "sig"
+}, {
+  "_id": "icpc",
+  "name": "SIG for Programming Languages",
+  "kind": "sig"
+}, {
+  "_id": "acm",
+  "name": "UIUC ACM",
+  "kind": "general"
+}, {
+  "_id": "hack",
+  "name": "Hack Illinois",
+  "kind": "committee"
+}, {
+  "_id": "rp",
+  "name": "Reflections | Projections",
+  "kind": "committee"
+}, {
+  "_id": "admin",
+  "name": "UIUC ACM Admin",
+  "kind": "committee"
+}, {
+  "_id": "projects",
+  "name": "UIUC ACM Projects",
+  "kind": "committee"
+}, {
+  "_id": "outreach",
+  "name": "UIUC ACM Outreach",
+  "kind": "committee"
+}, {
+  "_id": "corporate",
+  "name": "UIUC ACM Corporate",
+  "kind": "committee"
+}, {
+  "_id": "social",
+  "name": "ACM UIUC Social",
+  "kind": "committee"
+}, {
+  "_id": "wcs",
+  "name": "Women in Computer Science",
+  "kind": "other"
+}, {
+  "_id": "csillinois",
+  "name": "CS @ Illinois",
+  "kind": "general"
+}]
