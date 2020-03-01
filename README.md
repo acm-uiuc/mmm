@@ -8,6 +8,8 @@ maintaining a centralized database of relevant keywords or topics for each SIG, 
 to date schedule of meetings and topics, we can make a significant step towards achieving this
 goal.
 
+![MMM Architecture Diagram]('docs/mmm-architecture.png')
+
 ## API
 
 ***API basename***: `https://4z5904nohk.execute-api.us-east-1.amazonaws.com/dev`
