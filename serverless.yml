@@ -11,6 +11,10 @@ provider:
     AWS_DEPLOYMENT_REGION: ${self:provider.region}
     MONGODB_URI: ${file(./serverless-config/secrets.json):${self:provider.stage}.MONGODB_URI}
     TOPICS_KEY: ${file(./serverless-config/secrets.json):${self:provider.stage}.TOPICS_KEY}
+    MAIL_HOST: ${file(./serverless-config/secrets.json):${self:provider.stage}.MAIL_HOST}
+    MAIL_PORT: ${file(./serverless-config/secrets.json):${self:provider.stage}.MAIL_PORT}
+    MAIL_USERNAME: ${file(./serverless-config/secrets.json):${self:provider.stage}.MAIL_USERNAME}
+    MAIL_PASSWORD: ${file(./serverless-config/secrets.json):${self:provider.stage}.MAIL_PASSWORD}
 
 
 package:
@@ -113,6 +117,14 @@ functions:
           method: post
           cors: true
 
+  send-mailing:
+    handler: src/mailing/route.default
+
+    events:
+      - http:
+          path: /test/mail
+          method: post
+          cors: true
 
 custom:
   stages:

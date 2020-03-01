@@ -4,7 +4,8 @@ const MemberSchema = new mongoose.Schema({
   email: {
     required: true,
     type: String,
-    index: true
+    index: true,
+    unique: true
   },
   interests: {
     required: true,

@@ -10,7 +10,146 @@ goal.
 
 ## API
 
-***API basename***: `https://89gebvx4j9.execute-api.us-east-1.amazonaws.com/dev/orgs`
+***API basename***: `https://89gebvx4j9.execute-api.us-east-1.amazonaws.com/dev`
+
+### /events
+
+#### POST 
+
+Schema
+```json
+{
+  "body": {
+    "event": {
+      "name": {
+        "type": "string",
+        "required": true
+      },
+      "description": {
+        "type": "string"
+      },
+      "org": {
+        "type": "string",
+        "required": true
+      },
+      "creator": {
+        "type": "string",
+        "required": true
+      },
+      "eventDate": {
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "topics": {
+        "type": "array"
+      }
+    }
+  }
+}
+```
+
+Example
+```json
+{
+  "body": {
+    "event": {
+      "org": {
+        "_id": "aida"
+      },
+      "name": "Awesome Hack IL Project Meeting",
+      "topics": ["python", "data", "ai"],
+      "eventDate": {
+        "startTime": "2020-03-01T03:00:04.238Z",
+        "endTime": "2020-03-02T03:00:07.880Z"
+      },
+      "description": "My really awesome event",
+      "creator": "tincher2"
+    }
+  }
+}
+```
+
+#### GET
+
+Schema
+```json
+{
+  "queryStringParameters": {
+    "whereTopic": {
+      "type": "object"
+      // MongoDB where clause
+    },
+    "limit": {
+      "type": "number",
+      "default": 50,
+      "max": 50
+    }
+  }
+}
+```
+
+Example
+```json
+{
+  "queryStringParameters": {
+    "whereTopic": {
+      "org": {
+        "_id": "aida"
+      }
+    }
+  }
+}
+```
+
+Returns
+```json
+{
+    "message": "Fetched 2 events",
+    "events": [
+        {
+            "name": "smoke-test-event-39eec079-09fd-4d04-890f-bb6db5e8d5b8",
+            "org": {
+                "_id": "aida",
+                "name": "AI/DA",
+                "kind": "sig"
+            },
+            "description": "hello world",
+            "creator": "tincher2",
+            "eventDate": {
+                "startTime": "2020-03-01T03:00:04.238Z",
+                "endTime": "2020-03-02T03:00:04.238Z"
+            },
+            "topics": []
+        },
+        {
+            "name": "smoke-test-event-04af6c04-1f7a-4e7e-94d0-1430382c0d5c",
+            "org": {
+                "_id": "aida",
+                "name": "AI/DA",
+                "kind": "sig"
+            },
+            "description": "hello world",
+            "creator": "tincher2",
+            "eventDate": {
+                "startTime": "2020-03-01T03:00:04.238Z",
+                "endTime": "2020-03-02T03:00:04.238Z"
+            },
+            "topics": [
+                {
+                    "_id": "smoke-test-topic-3ff1e0b4-7a42-4673-b22e-fbc418b42e3c",
+                    "kind": "other"
+                }
+            ]
+        }
+    ]
+}
+```
 
 ### /topics
 

@@ -18,7 +18,6 @@ test('Create valid Event', async () => {
   };
 
   const res = await createEvent(event);
-  console.log(res)
   expect(res.status).toEqual(200);
   expect(res.data.event).toMatchObject(event);
 });
@@ -53,5 +52,10 @@ test('Create topics and event', async () => {
 
   const createEventRes = await createEvent(event);
   expect(createEventRes.status).toEqual(200);
+
+  const resEvent = createEventRes.data.event;
+  resEvent.topics = resEvent.topics.map(t => t._id);
+  resEvent.topics.sort();
+  event.topics.sort();
   expect(createEventRes.data.event).toMatchObject(event);
 });

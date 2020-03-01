@@ -1,0 +1,21 @@
+Hi there! Here are some events going on around ACM in the next week that we think might interest you.
+
+-----
+
+<% events.forEach(function(event) { -%>
+<%- event.name.toUpperCase() %>
+<%- event.eventDate.startTime.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago'}) %> with <%- event.org.name %>
+<% if (event.description && event.description.trim() != '') { -%>
+
+<%- event.description %>
+<% } -%>
+
+-----
+<% }); -%>
+
+See you around!
+
+Best,
+ACM Member-Meeting Matcher
+
+P.S. To change your preferences or unsubscribe, go to your MMM settings.
