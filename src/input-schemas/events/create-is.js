@@ -9,15 +9,24 @@ export default {
       properties: {
         event: {
           type: 'object',
-          required: ['org', 'creator', 'eventDate', 'topics'],
+          required: ['org', 'creator', 'eventDate', 'topics', 'name'],
           additionalProperties: false,
           properties: {
+            name: {
+              type: 'string',
+              maxLength: 64
+            },
+            description: {
+              type: 'string',
+              default: '',
+              maxLength: 256
+            },
             org: {
               type: 'object',
               additionalProperties: false,
-              required: ['name'],
+              required: ['_id'],
               properties: {
-                name: {
+                _id: {
                   type: 'string'
                 }
               }
@@ -31,10 +40,12 @@ export default {
               required: ['startTime', 'endTime'],
               properties: {
                 startTime: {
-                  type: 'date'
+                  type: 'string',
+                  format: 'date-time'
                 },
                 endTime: {
-                  type: 'date'
+                  type: 'string',
+                  format: 'date-time'
                 }
               }
             },

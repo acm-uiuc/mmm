@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 test('Create valid Topic', async () => {
   const topic = {
-    name: `smoke-test-topic-${uuidv4()}`,
+    _id: `smoke-test-topic-${uuidv4()}`,
     kind: 'other'
   }
 
@@ -15,7 +15,7 @@ test('Create valid Topic', async () => {
 
 test('Create and get valid Topic', async () => {
   const topic = {
-    name: `smoke-test-topic-${uuidv4()}`,
+    _id: `smoke-test-topic-${uuidv4()}`,
     kind: 'other'
   }
 
@@ -29,7 +29,7 @@ test('Create and get valid Topic', async () => {
 
   const getRes = await getTopics({
     whereTopic: {
-      name: topic.name
+      _id: topic._id
     }
   });
   expect(getRes.status).toEqual(200);

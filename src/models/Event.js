@@ -4,7 +4,7 @@ import Org from 'models/Org.js';
 
 const EventSchema = new mongoose.Schema({
   org: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
     ref: Org
   },
@@ -17,35 +17,36 @@ const EventSchema = new mongoose.Schema({
     required: true
   },
   eventDate: {
-    startTime: Date,
-    endTime: Date
+    startTime: { type: Date },
+    endTime: { type: Date }
   },
   name: {
     required: true,
     type: String
   },
-  description: {
-    required: true,
-    type: String
-  },
-  topics: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: Topic
-  }
+  topics: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Topic
+    }
+  ]
 });
 
 /** Filters out server metadata from the Event object.
  *
  * @return {Object} Event
  */
-EventSchema.methods.getReturnableEvent = function() {
+EventSchema.methods.getReturnableEvent = async function() {
+  const event = await this.populate('org')
+    .populate('topics')
+    .execPopulate();
   return {
-    name: this.name,
-    org: this.org,
-    description: this.description,
-    creator: this.creator,
-    eventDate: this.eventDate,
-    topics: this.topics // TODO[Bailey]: aggregate these
+    name: event.name,
+    org: event.org,
+    description: event.description,
+    creator: event.creator,
+    eventDate: event.eventDate,
+    topics: event.topics
   };
 };
 
