@@ -25,6 +25,9 @@ const EventSchema = new mongoose.Schema({
     required: true,
     type: String
   },
+  location: {
+    type: String
+  },
   topics: [
     {
       type: String,
@@ -47,6 +50,7 @@ EventSchema.methods.getReturnableEvent = async function() {
     description: event.description,
     creator: event.creator,
     eventDate: event.eventDate,
+    location: event.location,
     topics: event.topics.map((t) => t.getReturnableTopic())
   };
 };

@@ -14,7 +14,8 @@ test('Create valid Event', async () => {
       "endTime": "2020-03-02T03:00:04.238Z"
     },
     "creator": "tincher2",
-    "description": "hello world"
+    "description": "hello world",
+    "location": "siebel"
   };
 
   const res = await createEvent(event);
@@ -47,7 +48,8 @@ test('Create topics and event', async () => {
       "endTime": "2020-03-02T03:00:04.238Z"
     },
     "creator": "tincher2",
-    "description": "hello world"
+    "description": "hello world",
+    "location": "siebel"
   };
 
   const createEventRes = await createEvent(event);

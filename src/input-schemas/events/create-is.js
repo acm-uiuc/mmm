@@ -34,6 +34,9 @@ export default {
             creator: {
               type: 'string'
             },
+            location: {
+              type: 'string'
+            },
             eventDate: {
               type: 'object',
               additionalProperties: false,

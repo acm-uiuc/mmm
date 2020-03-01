@@ -28,6 +28,9 @@ Schema
       "description": {
         "type": "string"
       },
+      "location": {
+        "type": "string"
+      },
       "org": {
         "type": "string",
         "required": true
@@ -64,6 +67,7 @@ Example
       },
       "name": "Awesome Hack IL Project Meeting",
       "topics": ["python", "data", "ai"],
+      "location": "Siebel",
       "eventDate": {
         "startTime": "2020-03-01T03:00:04.238Z",
         "endTime": "2020-03-02T03:00:07.880Z"
@@ -121,6 +125,7 @@ Returns
             },
             "description": "hello world",
             "creator": "tincher2",
+            "location": "Siebel",
             "eventDate": {
                 "startTime": "2020-03-01T03:00:04.238Z",
                 "endTime": "2020-03-02T03:00:04.238Z"
@@ -136,6 +141,7 @@ Returns
             },
             "description": "hello world",
             "creator": "tincher2",
+            "location": "Siebel",
             "eventDate": {
                 "startTime": "2020-03-01T03:00:04.238Z",
                 "endTime": "2020-03-02T03:00:04.238Z"

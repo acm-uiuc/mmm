@@ -52,7 +52,8 @@ const handler = async ({ body: { event } }) => {
       },
       creator: event.creator,
       org: orgId,
-      topics: topics
+      topics: topics,
+      location: event.location
     });
 
     const savedEvent = await newEvent.save();
