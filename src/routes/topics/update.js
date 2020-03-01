@@ -11,4 +11,4 @@ const handler = async (event) => {
 };
 
 // Wrap our handler with middleware
-export default middyfy(handler, UpdateInputSchema);
+export default middyfy(handler, UpdateInputSchema, true);
