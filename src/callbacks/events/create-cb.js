@@ -28,10 +28,3 @@ export const eventDoesNotExistCB = (_id) => ({
     message: `Event ${_id} does not exist`
   }
 });
-
-export const unauthorizedEventCB = (eventId) => ({
-  statusCode: 403,
-  body: {
-    message: `You are not authorized to modify event ${eventId}`
-  }
-});

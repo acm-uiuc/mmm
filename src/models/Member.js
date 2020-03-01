@@ -23,8 +23,7 @@ const MemberSchema = new mongoose.Schema({
           type: Number
         }
       }
-    ],
-    default: []
+    ]
   },
   current: {
     required: true,

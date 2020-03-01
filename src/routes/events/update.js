@@ -7,36 +7,20 @@ import Org from 'models/Org';
 import Topic from 'models/Topic';
 
 import { internalServerErrorCB, badRequestErrorCB } from 'callbacks/shared';
-import { orgDoesNotExistCB, orgUnauthorizedCB } from 'callbacks/orgs/get-cb';
-import {
-  eventUpdatedCB,
-  eventDoesNotExistCB,
-  unauthorizedEventCB
-} from 'callbacks/events/create-cb';
+import { orgDoesNotExistCB } from 'callbacks/orgs/get-cb';
+import { eventUpdatedCB } from 'callbacks/events/create-cb';
 
-const handler = async ({
-  body: { event },
-  pathParameters: { _id },
-  authorizedUser: { email }
-}) => {
-  const oldEvent = await Event.findById(_id);
-  if (oldEvent === null) {
-    return eventDoesNotExistCB();
-  }
-  if (!(await oldEvent.isUserAuthorized(email))) {
-    return unauthorizedEventCB(_id);
-  }
+const handler = async ({ body: { event }, pathParameters: { _id } }) => {
+  // TODO[Bailey]: Authenticate in middleware
 
   if (event.hasOwnProperty('org') && event.org._id !== undefined) {
     try {
       const orgId = await Org.findById(event.org._id).select('_id');
       if (orgId === null) {
         return orgDoesNotExistCB(event.org._id);
+      } else {
+        event.org._id = orgId._id;
       }
-      if (!(await orgId.isUserAuthorized(email))) {
-        return orgUnauthorizedCB(orgId);
-      }
-      event.org._id = orgId._id;
     } catch (err) {
       console.error(err);
       return internalServerErrorCB();
@@ -81,4 +65,4 @@ const handler = async ({
 };
 
 // Wrap our handler with middleware
-export default middyfy(handler, UpdateInputSchema, true);
+export default middyfy(handler, UpdateInputSchema);

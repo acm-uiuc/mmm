@@ -9,27 +9,21 @@ import Topic from 'models/Topic';
 import { internalServerErrorCB, badRequestErrorCB } from 'callbacks/shared';
 import { orgDoesNotExistCB } from 'callbacks/orgs/get-cb';
 import { eventCreatedCB } from 'callbacks/events/create-cb';
-import { orgUnauthorizedCB } from '../../callbacks/orgs/get-cb';
 
-const handler = async (request) => {
-  const event = request.body.event;
+const handler = async ({ body: { event } }) => {
+  // TODO[Bailey]: Authenticate in middleware
 
-  let org;
   let orgId;
   try {
-    org = await Org.findOne({ _id: event.org._id });
-    if (org === null) {
+    orgId = await Org.findById(event.org._id).select('_id');
+    if (orgId === null) {
       return orgDoesNotExistCB(event.org._id);
     } else {
-      orgId = org._id;
+      orgId = orgId._id;
     }
   } catch (err) {
     console.error(err);
     return internalServerErrorCB();
-  }
-
-  if (!(await org.isUserAuthorized(request.authorizedUser.email))) {
-    return orgUnauthorizedCB(org);
   }
 
   let topics;
@@ -56,7 +50,7 @@ const handler = async (request) => {
         startTime: startTime,
         endTime: endTime
       },
-      creator: request.authorizedUser.email,
+      creator: event.creator,
       org: orgId,
       topics: topics,
       location: event.location
@@ -71,4 +65,4 @@ const handler = async (request) => {
 };
 
 // Wrap our handler with middleware
-export default middyfy(handler, CreateInputSchema, true);
+export default middyfy(handler, CreateInputSchema);

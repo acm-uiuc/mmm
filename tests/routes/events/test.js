@@ -13,6 +13,7 @@ test('Create valid Event', async () => {
       "startTime": "2020-03-01T03:00:04.238Z",
       "endTime": "2020-03-02T03:00:04.238Z"
     },
+    "creator": "tincher2",
     "description": "hello world",
     "location": "siebel"
   };
@@ -46,6 +47,7 @@ test('Create topics and event', async () => {
       "startTime": "2020-03-01T03:00:04.238Z",
       "endTime": "2020-03-02T03:00:04.238Z"
     },
+    "creator": "tincher2",
     "description": "hello world",
     "location": "siebel"
   };
@@ -71,6 +73,7 @@ test('Update an event', async () => {
       "startTime": "2020-03-01T03:00:04.238Z",
       "endTime": "2020-03-02T03:00:04.238Z"
     },
+    "creator": "tincher2",
     "description": "hello world",
     "location": "siebel"
   };

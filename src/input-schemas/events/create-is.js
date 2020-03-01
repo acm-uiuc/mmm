@@ -9,7 +9,7 @@ export default {
       properties: {
         event: {
           type: 'object',
-          required: ['org', 'eventDate', 'topics', 'name'],
+          required: ['org', 'creator', 'eventDate', 'topics', 'name'],
           additionalProperties: false,
           properties: {
             name: {
@@ -30,6 +30,9 @@ export default {
                   type: 'string'
                 }
               }
+            },
+            creator: {
+              type: 'string'
             },
             location: {
               type: 'string'

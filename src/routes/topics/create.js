@@ -5,12 +5,9 @@ import CreateInputSchema from 'input-schemas/topics/create-is';
 import Topic from 'models/Topic';
 
 import { topicCreatedCB } from 'callbacks/topics/create-cb';
-import { internalServerErrorCB, devOnlyCB } from 'callbacks/shared';
+import { internalServerErrorCB } from 'callbacks/shared';
 
 const handler = async ({ body: { topic } }) => {
-  if (!process.env.IS_OFFLINE) {
-    return devOnlyCB();
-  }
   try {
     const newTopic = new Topic(topic);
     const savedTopic = await newTopic.save();
@@ -22,4 +19,4 @@ const handler = async ({ body: { topic } }) => {
 };
 
 // Wrap our handler with middleware
-export default middyfy(handler, CreateInputSchema, false);
+export default middyfy(handler, CreateInputSchema);

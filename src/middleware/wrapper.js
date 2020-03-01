@@ -8,7 +8,7 @@ import validator from '@middy/validator';
 import jsonBodyEncoder from 'middleware/custom/json-body-encoder';
 import validatorErrorHandler from 'middleware/custom/validator-error-handler';
 import errorHandler from 'middleware/custom/error-handler';
-import httpHeaderAuthorizer from 'middleware/custom/http-header-authorizer';
+// import httpHeaderAuthorizer from 'middleware/custom/http-header-authorizer';
 import mongooseConnector from 'middleware/custom/mongoose-connector';
 import jsonParametersParser from 'middleware/custom/json-parameters-parser';
 
@@ -34,9 +34,9 @@ export default (handler, inputSchema = null, authorized = false) => {
     middleware.use(validator({ inputSchema }));
   }
 
-  if (authorized) {
-    middleware.use(httpHeaderAuthorizer());
-  }
+  // if (authorized) {
+  //   middleware.use(httpHeaderAuthorizer());
+  // }
 
   middleware
     .use(validatorErrorHandler())

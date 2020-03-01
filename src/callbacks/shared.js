@@ -25,10 +25,3 @@ export const userDoesNotExistCB = (username) => ({
     message: `User ${username} does not exist`
   }
 });
-
-export const devOnlyCB = (username) => ({
-  statusCode: 403,
-  body: {
-    message: 'This endpoint is dev-only'
-  }
-});

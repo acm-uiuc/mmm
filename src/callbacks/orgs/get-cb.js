@@ -12,10 +12,3 @@ export const orgDoesNotExistCB = (org) => ({
     message: `org ${org} does not exist`
   }
 });
-
-export const orgUnauthorizedCB = (org) => ({
-  statusCode: 403,
-  body: {
-    message: `You are not authorized to modify org ${org._id}`
-  }
-});
