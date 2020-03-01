@@ -190,6 +190,9 @@
                   <div class="eventMain">
                     <span class="eventName"><%= event.name %></span><br>
                     <%= event.eventDate.startTime.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago'}) %>
+                    <% if (event.location) { %>
+                      at <%= event.location %>
+                    <% } %>
                     with <span class="eventOrg"><%= event.org.name %></span>
                   </div>
                   <% if (event.description && event.description.trim() != '') { %>
