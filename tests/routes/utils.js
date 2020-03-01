@@ -14,7 +14,7 @@ export const createTopic = async (topic) => {
     topic: topic
   }, {
     headers: {
-      'NetID': 'tincher2'
+      'NetID': 'admin'
     }
   });
 };
@@ -28,7 +28,7 @@ export const createEvent = async (event) => {
     event: event
   }, {
     headers: {
-      'NetID': 'tincher2'
+      'NetID': 'admin'
     }
   });
 };
@@ -38,7 +38,7 @@ export const updateEvent = async (_id, event) => {
     event: event
   }, {
     headers: {
-      'NetID': 'tincher2'
+      'NetID': 'admin'
     }
   });
 };

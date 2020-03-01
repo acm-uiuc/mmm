@@ -14,5 +14,7 @@ const OrgManagerSchema = new mongoose.Schema({
   }
 });
 
+// TODO[Bailey]: Multi-key index
+
 export default mongoose.models.OrgManager ||
   mongoose.model('OrgManager', OrgManagerSchema);
