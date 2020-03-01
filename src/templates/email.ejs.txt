@@ -4,7 +4,7 @@ Hi there! Here are some events going on around ACM in the next week that we thin
 
 <% events.forEach(function(event) { -%>
 <%- event.name.toUpperCase() %>
-<%- event.eventDate.startTime.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago'}) %> with <%- event.org.name %>
+<%- event.eventDate.startTime.toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago'}) %><% if (event.location) { %> at <%- event.location %><% } %> with <%- event.org.name %>
 <% if (event.description && event.description.trim() != '') { -%>
 
 <%- event.description %>

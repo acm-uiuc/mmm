@@ -40,9 +40,7 @@ export async function sendEmailBlast() {
   nextWeek.setDate(now.getDate() + 7);
   const upcomingEvents = await Event.find({
     'eventDate.startTime': { $gte: now, $lt: nextWeek }
-  })
-    .sort({ 'eventDate.startTime': -1 })
-    .populate([{ path: 'topics' }, { path: 'org' }]);
+  }).populate('org');
   const notifiedUsers = [];
   const promises = [];
   for (const member of members) {
@@ -86,7 +84,7 @@ function scoreInterest(member, event) {
   let matches = 0.0;
   let maxRelevance = 0.0;
   for (const topic of event.topics) {
-    const relevanceToMember = memberInterests[topic._id] || 0;
+    const relevanceToMember = memberInterests[topic] || 0;
     matches += relevanceToMember;
     maxRelevance = Math.max(maxRelevance, relevanceToMember);
   }
