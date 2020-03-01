@@ -10,6 +10,7 @@ provider:
     EXECUTION_STAGE: ${self:provider.stage}
     AWS_DEPLOYMENT_REGION: ${self:provider.region}
     MONGODB_URI: ${file(./serverless-config/secrets.json):${self:provider.stage}.MONGODB_URI}
+    TOPICS_KEY: ${file(./serverless-config/secrets.json):${self:provider.stage}.TOPICS_KEY}
 
 
 package:
@@ -101,6 +102,15 @@ functions:
       - http:
           path: /orgs
           method: get
+          cors: true
+
+  service-update-member:
+    handler: src/routes/topics-service/updatemember.default
+
+    events:
+      - http:
+          path: /service/updatemember
+          method: post
           cors: true
 
 

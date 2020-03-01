@@ -4,6 +4,7 @@
   "description": "UIUC ACM Member-to-Meeting-Matcher",
   "scripts": {
     "offline": "sls offline start --skipCacheInvalidation",
+    "lan": "sls offline start --skipCacheInvalidation --host 0.0.0.0",
     "lint": "eslint --fix \"src/**/*.js\" && prettier --write \"src/**/*.js\"",
     "commit": "npm run lint && git add . && git commit && git push",
     "test": "jest --config tests/jest.config.js --runInBand",
