@@ -28,9 +28,7 @@ const handler = async ({ body: { event } }) => {
 
   let topics;
   try {
-    console.log('ev:', event.topics);
-    topics = await Topic.find({ name: event.topics }).select('_id');
-    console.log('topics:', event.topics);
+    topics = await Topic.find({ _id: event.topics }).select('_id');
     topics = topics.map((topic) => topic._id);
   } catch (err) {
     console.error(err);

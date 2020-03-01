@@ -26,7 +26,7 @@ const EventSchema = new mongoose.Schema({
   },
   topics: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: Topic
     }
   ]
@@ -42,11 +42,11 @@ EventSchema.methods.getReturnableEvent = async function() {
     .execPopulate();
   return {
     name: event.name,
-    org: event.org,
+    org: event.org.getReturnableOrg(),
     description: event.description,
     creator: event.creator,
     eventDate: event.eventDate,
-    topics: event.topics
+    topics: event.topics.map((t) => t.getReturnableTopic())
   };
 };
 
