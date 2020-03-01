@@ -144,9 +144,7 @@ functions:
           path: /test/mail
           method: post
           cors: true
-      - schedule:
-          rate: cron(0 15 ? * MON, THU *)
-          enabled: True
+      - schedule: cron(0 15 ? * MON,THU *)
 
 custom:
   stages:
