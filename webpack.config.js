@@ -42,6 +42,7 @@ module.exports = {
       'input-schemas': path.resolve(__dirname, 'src/input-schemas/'),
       routes: path.resolve(__dirname, 'src/routes/'),
       callbacks: path.resolve(__dirname, 'src/callbacks/'),
+      mailing: path.resolve(__dirname, 'src/mailing/'),
       models: path.resolve(__dirname, 'src/models/'),
       utils: path.resolve(__dirname, 'src/utils/'),
       tests: path.resolve(__dirname, 'tests/')
