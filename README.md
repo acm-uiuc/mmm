@@ -321,14 +321,14 @@ Response Example
 
 ## Tech Stack
 
-[Amazon Web Services (AWS) Serverless Suite](): Compute
-[Serverless Framework](): Deployment automation and environment scripting
-[MongoDB Atlas](): Database
-[Webpack + Babel + Node.js](): Compilation and runtime environment
-[Yarn](): Package and dependency manager
-[Middy.js](): Extensible middleware framework for the Serverless Framework
-[Jest](): Unit testing
-[Prettier + eslint](): Linting
+- [Amazon Web Services (AWS) Serverless Suite](): Compute
+- [Serverless Framework](): Deployment automation and environment scripting
+- [MongoDB Atlas](): Database
+- [Webpack + Babel + Node.js](): Compilation and runtime environment
+- [Yarn](): Package and dependency manager
+- [Middy.js](): Extensible middleware framework for the Serverless Framework
+- [Jest](): Unit testing
+- [Prettier + eslint](): Linting
 
 ## Codebase structure
 
@@ -352,6 +352,4 @@ webpack.config.js
 
 ## Contact
 
-This project is maintained by [Bailey Tincher](), with significant work done by [Ben Nordick](),
-[Jackie Oh](), and [Jeff Taylor-Chang](). If you would like to contribute, read our guidelines
-in [CONTRIBUTING.md]() and submit a PR!
+This project is maintained by [Bailey Tincher](https://github.com/baileytincher), with significant work done by [Ben Nordick](https://github.com/Fleex255), [Jackie Oh](https://github.com/jmoh3), and [Jeff Taylor-Chang](https://github.com/jtaylorchang). If you would like to contribute, read our guidelines in [CONTRIBUTING.md]() and submit a PR!
