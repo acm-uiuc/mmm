@@ -21,7 +21,8 @@ export default () => ({
       handler.event.queryStringParameters.netid
     ) {
       try {
-        const email = handler.event.queryStringParameters.netid + '@illinois.edu';
+        const email =
+          handler.event.queryStringParameters.netid + '@illinois.edu';
         const member = await Member.findOneAndUpdate(
           { email: email },
           { email: email },
