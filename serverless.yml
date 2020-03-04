@@ -34,7 +34,7 @@ functions:
       - http:
           path: /events
           method: post
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   get-events:
     handler: src/routes/events/get.default
@@ -43,7 +43,7 @@ functions:
       - http:
           path: /events
           method: get
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   update-event:
     handler: src/routes/events/update.default
@@ -52,7 +52,7 @@ functions:
       - http:
           path: /events/{_id}
           method: patch
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   delete-event:
     handler: src/routes/events/delete.default
@@ -61,7 +61,7 @@ functions:
       - http:
           path: /events/{_id}
           method: delete
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   create-topic:
     handler: src/routes/topics/create.default
@@ -70,7 +70,7 @@ functions:
       - http:
           path: /topics
           method: post
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   get-topics:
     handler: src/routes/topics/get.default
@@ -79,7 +79,7 @@ functions:
       - http:
           path: /topics
           method: get
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   # update-topic:
   #   handler: src/routes/topics/update.default
@@ -106,7 +106,7 @@ functions:
       - http:
           path: /orgs
           method: get
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   authorize-user:
     handler: src/routes/authorization/authorize.default
@@ -115,7 +115,7 @@ functions:
       - http:
           path: /orgs/authorize
           method: post
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   revoke-user:
     handler: src/routes/authorization/revoke.default
@@ -124,7 +124,7 @@ functions:
       - http:
           path: /orgs/revoke
           method: post
-          cors: {origin: '*', headers: ['NetID']}
+          cors: true
 
   service-update-member:
     handler: src/routes/topics-service/updatemember.default
