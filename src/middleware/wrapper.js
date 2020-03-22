@@ -5,11 +5,13 @@ import jsonBodyParser from '@middy/http-json-body-parser';
 import doNotWaitForEmptyEventLoop from '@middy/do-not-wait-for-empty-event-loop';
 import validator from '@middy/validator';
 
+import mongooseConnector from 'middy-mongoose-connector';
+import mongoose from 'mongoose';
+
 import jsonBodyEncoder from 'middleware/custom/json-body-encoder';
 import validatorErrorHandler from 'middleware/custom/validator-error-handler';
 import errorHandler from 'middleware/custom/error-handler';
 import httpQueryAuthorizer from 'middleware/custom/http-query-authorizer';
-import mongooseConnector from 'middleware/custom/mongoose-connector';
 import jsonParametersParser from 'middleware/custom/json-parameters-parser';
 
 /** Wraps a Serverless api function handler with middleware from
@@ -23,7 +25,7 @@ import jsonParametersParser from 'middleware/custom/json-parameters-parser';
  */
 export default (handler, inputSchema = null, authorized = false) => {
   const middleware = middy(handler)
-    .use(mongooseConnector({ databaseURI: process.env.MONGODB_URI }))
+    .use(mongooseConnector({ mongoose: mongoose, databaseURI: process.env.MONGODB_URI }))
     .use(jsonBodyParser())
     .use(jsonParametersParser())
     .use(jsonBodyEncoder()) // Stringifies the response body

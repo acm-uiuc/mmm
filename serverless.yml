@@ -2,7 +2,6 @@ service: acm-mmm
 
 provider:
   name: aws
-  runtime: nodejs12.x
   stage: ${opt:stage,'dev'}
   region: us-east-1
 
@@ -29,6 +28,7 @@ package:
 functions:
   create-event:
     handler: src/routes/events/create.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -38,6 +38,7 @@ functions:
 
   get-events:
     handler: src/routes/events/get.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -47,6 +48,7 @@ functions:
 
   update-event:
     handler: src/routes/events/update.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -56,6 +58,7 @@ functions:
 
   delete-event:
     handler: src/routes/events/delete.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -65,6 +68,7 @@ functions:
 
   create-topic:
     handler: src/routes/topics/create.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -74,6 +78,7 @@ functions:
 
   get-topics:
     handler: src/routes/topics/get.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -101,6 +106,7 @@ functions:
   
   get-orgs:
     handler: src/routes/orgs/get.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -110,6 +116,7 @@ functions:
 
   authorize-user:
     handler: src/routes/authorization/authorize.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -119,6 +126,7 @@ functions:
 
   revoke-user:
     handler: src/routes/authorization/revoke.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -128,6 +136,7 @@ functions:
 
   service-update-member:
     handler: src/routes/topics-service/updatemember.default
+    runtime: nodejs12.x
 
     events:
       - http:
@@ -137,6 +146,7 @@ functions:
 
   send-mailing:
     handler: src/mailing/route.default
+    runtime: nodejs12.x
     timeout: 30
 
     events:
@@ -145,6 +155,17 @@ functions:
           method: post
           cors: true
       - schedule: cron(0 15 ? * MON,THU *)
+
+  parse-resume:
+    handler: src/routes/resume/parse_resume.handler
+    runtime: python3.6
+    timeout: 45
+
+    events:
+      - http:
+          path: /resume
+          method: post
+          cors: true
 
 custom:
   stages:
@@ -163,3 +184,4 @@ plugins:
   - serverless-stage-manager
   - serverless-webpack
   - serverless-offline
+  - serverless-python-requirements

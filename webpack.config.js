@@ -46,7 +46,8 @@ module.exports = {
       models: path.resolve(__dirname, 'src/models/'),
       utils: path.resolve(__dirname, 'src/utils/'),
       tests: path.resolve(__dirname, 'tests/'),
-      templates: path.resolve(__dirname, 'src/templates')
+      templates: path.resolve(__dirname, 'src/templates'),
+      mongoose: path.resolve(__dirname, 'node_modules/mongoose')
     }
   }
 };
