@@ -34,7 +34,7 @@
     "http-errors": "^1.7.3",
     "middy-mongoose-connector": "^0.1.1",
     "mongoose": "^5.9.3",
-    "nodemailer": "^6.4.3",
+    "nodemailer": "^6.4.16",
     "serverless-python-requirements": "^5.1.0",
     "source-map-support": "^0.5.16"
   },
